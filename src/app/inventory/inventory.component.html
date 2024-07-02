@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mb-3">
+    <h2>Vehicle Inventory</h2>
+    <button mat-raised-button color="primary" (click)="openAddVehicleModal()">Add New</button>
+  </div>
+
+  <div class="mb-3">
+    <button mat-raised-button color="accent" (click)="importVehicles($event)" accept=".csv">Import</button>
+    <button mat-raised-button color="warn" (click)="exportVehicles()">Export</button>
+  </div>
+
+  <div class="card p-3 mb-3">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="row">
+        <div class="col-md-3 mb-3" *ngFor="let control of searchControls">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ control.label }}</mat-label>
+            <input matInput [formControlName]="control.name" placeholder="Enter {{ control.label }}">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="text-center">
+        <button mat-raised-button color="primary" type="submit">Search</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="vehicles.length === 0" class="alert alert-warning text-center">
+    No vehicles found.
+  </div>
+
+  <table *ngIf="vehicles.length > 0" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Vehicle Number</th>
+        <th>License Plates</th>
+        <th>Class</th>
+        <th>Type</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Status</th>
+        <th>Owning Location</th>
+        <th>Current Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of vehicles">
+        <td>{{ vehicle.vehicleNumber }}</td>
+        <td>{{ vehicle.licensePlates }}</td>
+        <td>{{ vehicle.class }}</td>
+        <td>{{ vehicle.type }}</td>
+        <td>{{ vehicle.brand }}</td>
+        <td>{{ vehicle.model }}</td>
+        <td>{{ vehicle.status }}</td>
+        <td>{{ vehicle.owningLocation }}</td>
+        <td>{{ vehicle.currentLocation }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

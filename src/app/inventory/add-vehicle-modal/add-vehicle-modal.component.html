@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Add New Vehicle</h2>
+<form [formGroup]="addVehicleForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="row">
+      <div class="col-md-6 mb-3" *ngFor="let control of vehicleControls">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ control.label }}</mat-label>
+          <input matInput [formControlName]="control.name" placeholder="Enter {{ control.label }}">
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit">Add</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>
