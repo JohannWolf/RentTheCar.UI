@@ -5,8 +5,9 @@
   </div>
 
   <div class="mb-3">
-    <button mat-raised-button color="accent" (click)="importVehicles($event)" accept=".csv">Import</button>
-    <button mat-raised-button color="warn" (click)="exportVehicles()">Export</button>
+    <button mat-raised-button color="accent" (click)="fileInput.click()">Import</button>
+    <input #fileInput type="file" accept=".csv" (change)="onFileSelected($event)" style="display: none;">
+    <button mat-raised-button color="warn" class="buttonPadding" (click)="exportVehicles()">Export</button>
   </div>
 
   <div class="card p-3 mb-3">

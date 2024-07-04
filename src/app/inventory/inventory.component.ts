@@ -1,13 +1,14 @@
-import { Component} from '@angular/core';
+import { Component, ViewEncapsulation} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddVehicleModalComponent } from './add-vehicle-modal/add-vehicle-modal.component';
-import { VehicleService } from '../services/inventory/import.export.service';
+import { VehicleService } from '../services/inventory/vehicle.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder,FormGroup, ReactiveFormsModule } from '@angular/forms'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-inventory',
@@ -21,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,],
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class InventoryComponent {
@@ -64,12 +66,13 @@ export class InventoryComponent {
     if (file) {
       this.vehicleService.importVehicles(file).subscribe({
         next: (response) => {
-          alert(`${response} vehicles imported successfully.`);
+          console.log(response);
+          alert(`${response.message} vehicles imported successfully.`);
           this.errorMessage = null;
         },
-        error: (error) => {
-          this.errorMessage = error;
-          alert(error);
+        error: (error: HttpErrorResponse) => {
+          this.errorMessage = error.error || error.message || 'An error occurred while importing vehicles.';
+          alert(this.errorMessage);
         }
       });
     }
@@ -83,15 +86,6 @@ export class InventoryComponent {
         this.vehicles.push(result);
       }
     });
-  }
-
-  importVehicles(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.vehicleService.importVehicles(file).subscribe(data => {
-        this.vehicles = data;
-      });
-    }
   }
 
   exportVehicles() {

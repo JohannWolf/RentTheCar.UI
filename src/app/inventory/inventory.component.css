@@ -21,6 +21,42 @@
   margin-top: 20px;
 }
 
+button{
+  width: 100px;
+}
+
+.buttonPadding{
+  margin-left: 20px !important;
+}
+
 mat-label {
   color: #7b1fa2;
+  background: white;
+  padding: 5px;
+}
+
+mat-form-field:not(:focus-within) .mat-mdc-text-field-wrapper {
+  outline: 1px solid #7b1fa2;
+  border-radius: 2px;
+}
+
+mat-form-field input {
+  color: black !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: white !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__title {
+  color: #7b1fa2 !important;
+}
+
+mat-dialog-actions {
+  margin: 20px 15px 10px auto !important;
+}
+@media (max-width:420px) {
+  mat-dialog-actions {
+    margin: 20px auto 10px auto !important;
+  }  
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -20,9 +20,16 @@ export class VehicleService {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post<any>(`${this.apiUrl}/import`, formData).pipe(
-      catchError(error => {
-        // Handle error message
-        return throwError(error.error);
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'An unknown error occurred!';
+        if (error.error instanceof ErrorEvent) {
+          // Client-side error
+          errorMessage = `error: ${error.error.message}`;
+        } else {
+          // Server-side error
+          errorMessage = `error: ${error.status} , ${error.error}`;
+        }
+        return throwError(() => new Error(errorMessage));
       })
     );
   }
