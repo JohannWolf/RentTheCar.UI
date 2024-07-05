@@ -1,0 +1,39 @@
+<div class="container mt-3">
+    <h2>User Management</h2>
+    <button mat-raised-button color="primary" (click)="openAddUserModal()">Add User</button>
+    
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Enter Email">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Search</button>
+    </form>
+    
+    <div *ngIf="searchResults.length">
+      <h3>Search Results</h3>
+      <ul>
+        <li *ngFor="let user of searchResults" (click)="openEditUserModal(user)">
+          {{ user.email }} - {{ user.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <ng-template #addUserModal>
+    <h2>Add User</h2>
+    <form [formGroup]="addUserForm" (ngSubmit)="onAddUser()">
+      <!-- Form fields for adding a user -->
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </form>
+  </ng-template>
+  
+  <ng-template #editUserModal>
+    <h2>Edit User</h2>
+    <form [formGroup]="editUserForm" (ngSubmit)="onEditUser()">
+      <!-- Form fields for editing a user -->
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </form>
+    <button mat-raised-button color="warn" (click)="onDeleteUser()">Delete</button>
+  </ng-template>
+  

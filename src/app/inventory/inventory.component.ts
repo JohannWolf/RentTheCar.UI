@@ -89,6 +89,7 @@ export class InventoryComponent {
   }
 
   exportVehicles() {
-    this.vehicleService.exportVehicles(this.vehicles);
+    alert("Under development")
+    //this.vehicleService.exportVehicles(this.vehicles);
   }
 }

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { jwtDecode } from "jwt-decode";
+import { JwtPayload } from '../../models/jwt-payload.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,12 +37,22 @@ export class AuthenticationService {
     return localStorage.getItem('token') || '';
   }
 
+  getUser() {
+    const token = this.getToken();
+    if (token) {
+      const decoded: JwtPayload = jwtDecode(token);
+      return decoded;
+    }
+    return null;
+  }
+
   getRefreshToken(): string {
     return localStorage.getItem('refreshToken') || '';
   }
 
-  isLoggedIn(): boolean {
-    return !!this.getToken();
+  isLoggedIn() {
+    const token = this.getToken();
+    return !!token; // You might want to add more checks like token expiry here
   }
 
   logout(): void {
