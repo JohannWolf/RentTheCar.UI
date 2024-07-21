@@ -1,0 +1,20 @@
+form{
+    padding-top: 15px;
+}
+
+mat-label {
+    color: #7b1fa2;
+    background: white;
+    padding: 5px;
+  }
+  
+  mat-form-field:not(:focus-within) .mat-mdc-text-field-wrapper {
+    outline: 1px solid #7b1fa2;
+    border-radius: 2px;
+  }
+  
+  mat-form-field input {
+    color: black !important;
+    width: 50%;
+    margin-right: 10px;
+  }

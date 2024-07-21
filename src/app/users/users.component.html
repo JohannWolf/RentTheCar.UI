@@ -2,7 +2,7 @@
     <h2>User Management</h2>
     <button mat-raised-button color="primary" (click)="openAddUserModal()">Add User</button>
     
-    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <form class="formContainer" [formGroup]="searchForm" (ngSubmit)="onSearch()">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" placeholder="Enter Email">
@@ -24,6 +24,14 @@
     <h2>Add User</h2>
     <form [formGroup]="addUserForm" (ngSubmit)="onAddUser()">
       <!-- Form fields for adding a user -->
+      <div class="row">
+        <div class="col-md-6 mb-3" *ngFor="let control of userControls">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ control.label }}</mat-label>
+            <input matInput [formControlName]="control.name" placeholder="Enter {{ control.label }}">
+          </mat-form-field>
+        </div>
+      </div>
       <button mat-raised-button color="primary" type="submit">Save</button>
     </form>
   </ng-template>

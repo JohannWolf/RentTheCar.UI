@@ -1,0 +1,60 @@
+<div class="container">
+    <h2>Rates</h2>
+    <button mat-raised-button color="primary" (click)="openAddRateDialog()">Add Rate</button>
+    
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="row">
+        <div class="col-md-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Vehicle Class</mat-label>
+            <input matInput formControlName="vehicleClass">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Search</button>
+    </form>
+  
+    <div *ngIf="rates.length > 0">
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Vehicle Class</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rate of rates" (click)="openEditRateDialog(rate)">
+            <td>{{ rate.name }}</td>
+            <td>{{ rate.vehicleClass }}</td>
+            <td>{{ rate.startDate | date }}</td>
+            <td>{{ rate.endDate | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

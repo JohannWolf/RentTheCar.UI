@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
@@ -18,7 +18,8 @@ import { MatDialog } from '@angular/material/dialog';
     MatButtonModule,
     MatListModule,],
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UsersComponent {
   searchForm: FormGroup;
@@ -29,6 +30,16 @@ export class UsersComponent {
 
   @ViewChild('addUserModal') addUserModal!: TemplateRef<any>;
   @ViewChild('editUserModal') editUserModal!: TemplateRef<any>;
+
+  userControls = [
+    { name: 'email', label: 'Email' },
+    { name: 'name', label: 'Name' },
+    { name: 'lastName', label: 'Last Name' },
+    { name: 'phone', label: 'Phone' },
+    { name: 'password', label: 'Password' },
+    { name: 'roles', label: 'Roles' },
+  ];
+
 
   constructor(
     private fb: FormBuilder,
@@ -74,7 +85,7 @@ onSearch(): void {
 }
 
   openAddUserModal(): void {
-    this.dialog.open(this.addUserModal);
+    this.dialog.open(this.addUserModal, { panelClass: 'custom-dialog-container' });
   }
 
   openEditUserModal(user: any): void {

@@ -1,0 +1,58 @@
+<h2 class="custom-title-padding" mat-dialog-title>Add Rate</h2>
+<form [formGroup]="addRateForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Vehicle Class</mat-label>
+      <input matInput formControlName="vehicleClass">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Hourly Rate</mat-label>
+      <input matInput type="number" formControlName="hourlyRate">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Daily Rate</mat-label>
+      <input matInput type="number" formControlName="dailyRate">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Weekly Rate</mat-label>
+      <input matInput type="number" formControlName="weeklyRate">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Monthly Rate</mat-label>
+      <input matInput type="number" formControlName="monthlyRate">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Effective Hours</mat-label>
+      <input matInput type="number" formControlName="effectiveHours">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Effective Days for Week</mat-label>
+      <input matInput type="number" formControlName="effectiveDaysForWeek">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Effective Days for Month</mat-label>
+      <input matInput type="number" formControlName="effectiveDaysForMonth">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+    <!-- Add checkboxes or multi-select dropdown for locations here -->
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </mat-dialog-actions>
+</form>
