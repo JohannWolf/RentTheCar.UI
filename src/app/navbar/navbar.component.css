@@ -1,9 +1,40 @@
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+/* Desktop Links */
+.desktop-links {
+  display: flex;
+  align-items: center;
+}
+
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .desktop-links {
+    display: none; /* Hide desktop links on mobile */
   }
-  
-  a {
+
+  .hamburger {
+    display: inline-block; /* Show hamburger menu on mobile */
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: #3f51b5;
+    padding: 10px;
+  }
+
+  .mobile-menu a,
+  .mobile-menu button {
     color: white;
+    text-align: center;
+    padding: 10px 0;
     text-decoration: none;
+    width: 100%;
   }
-  
+}

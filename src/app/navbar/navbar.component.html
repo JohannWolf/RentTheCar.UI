@@ -1,9 +1,27 @@
 <mat-toolbar color="primary">
-    <span>Rent The Cat</span>
-    <span class="spacer"></span>
+  <button mat-icon-button class="hamburger" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Rent The Cat</span>
+  <span class="spacer"></span>
+  
+  <!-- Desktop Links -->
+  <div class="desktop-links">
     <a mat-button routerLink="/home">Home</a>
     <a mat-button routerLink="/inventory">Inventory</a>
     <a mat-button routerLink="/users">Users</a>
     <a mat-button routerLink="/rates">Rates</a>
-  </mat-toolbar>
+    <button mat-button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+  </div>
+
+</mat-toolbar>
+
+<!-- Mobile Menu -->
+<div *ngIf="menuOpen" class="mobile-menu">
+  <a mat-button routerLink="/home" (click)="closeMenu()">Home</a>
+  <a mat-button routerLink="/inventory" (click)="closeMenu()">Inventory</a>
+  <a mat-button routerLink="/users" (click)="closeMenu()">Users</a>
+  <a mat-button routerLink="/rates" (click)="closeMenu()">Rates</a>
+  <button mat-button (click)="logout()">Logout</button>
+</div>
   
